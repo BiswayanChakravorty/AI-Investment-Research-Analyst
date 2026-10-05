@@ -26,6 +26,14 @@ class FinancialSnapshot(BaseModel):
     free_cash_flow: Optional[float] = None
     market_cap: Optional[float] = None
 
+class FinancialPeriod(BaseModel):
+    period_end: str
+    revenue: Optional[float] = None
+    net_income: Optional[float] = None
+    eps: Optional[float] = None
+    operating_margin_pct: Optional[float] = None
+    free_cash_flow: Optional[float] = None
+
 class ToneSentence(BaseModel):
     text: str
     sentiment: float
@@ -52,6 +60,7 @@ class ResearchReport(BaseModel):
     generated_at: str
     company: dict
     financials: FinancialSnapshot
+    financial_history: list[FinancialPeriod] = []
     tone: ToneAnalysis
     scenarios: list[Scenario]
     thesis: list[str]
